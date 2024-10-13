@@ -11,39 +11,22 @@ export interface IProduct {
 //информация о товаре, которую ипользуем в карточке
 export type TProductShort = Pick<IProduct, 'title' | 'price'>;
 
-// работаем с карточками товаров
-export interface IProductDisplay {
-    products: IProduct[]; 
-    fullProduct: IProduct; 
-    selectCard(product: IProduct): void; 
-}
-
 //инфо о конкретном заказе в корзине
 export interface IOrderInfo {
     products: IProduct[];
-    total: number | null;
+    totalBasketSum: number | null;
     email: string;
     phoneNumber: string;
     payment: TPaymentProcess;
     address: string;
+    formError: Partial<Record<keyof IOrderInfo, string>>;
+    isValid: boolean;
 }
 
 //типы оплаты
 export type TPaymentProcess = 'онлайн' | 'при получении';
 
-//отработка ошибок в форме
-export interface IFormValid extends IOrderInfo {
-    formError: Partial<Record<keyof IOrderInfo, string>>;
-    isValid: boolean;
-}
- 
-
-//работаем с корзиной
-export interface IBasket {
-    productsList: IProduct[];
-    addProduct(product: IProduct): void;
-    deleteProduct(product: IProduct): void;
-    finalCount(): number;
-    finalPrice(): number;
-    clearBasket(): void
-}
+export type TFormValid = Pick<IOrderInfo, 'formError' | 'isValid'>;
+export type TPersonalInfo = Pick<IOrderInfo, 'email' | 'phoneNumber'>;
+export type TDelivery = Pick<IOrderInfo, 'payment' | 'address'>;
+export type TOrderList = Pick<IOrderInfo, 'totalBasketSum' | 'products'>
