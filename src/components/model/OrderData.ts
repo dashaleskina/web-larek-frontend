@@ -27,12 +27,16 @@ export class OrderData extends Model<IOrderInfo> {
     }
     
     validatePersonalInfo() {
+        const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const regexpPhone = /^(?:\+7|8)\s?\d{3}[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/;
+
+
         const formError: typeof this.formError = {}
-        if (!this.email) {
+        if (!this.email || !regexpEmail.test(this.email)) {
             formError.email = 'Укажите почтовый ящик'
         }
 
-        if (!this.phone) {
+        if (!this.phone || !regexpPhone.test(this.phone)) {
             formError.phone = 'Укажите номер телефона'
         }
 

@@ -26,21 +26,18 @@ export class BasketView extends View<TOrderList> {
 
 	set basketSum(price: number) {
 		this.setText(this.price, price + ' синапсов');
+		this.setDisabled(this.button, !price)
 	}
+
 
 	set products(products: HTMLElement[]) {
 		const isEmpty = products.length === 0;
-
-		if (isEmpty) {
-			this.list.replaceChildren(
-				createElement<HTMLParagraphElement>('p', {
-					textContent: 'Корзина пуста',
-				})
-			);
-		} else {
-			this.list.replaceChildren(...products);
-		}
-
-		this.button.disabled = isEmpty;
+		this.list.replaceChildren(...products);
+		this.setButtonDisabled(isEmpty)
 	}
+
+	// Новый метод для установки состояния кнопки
+    setButtonDisabled(state: boolean) {
+        this.setDisabled(this.button, state);
+    }
 }

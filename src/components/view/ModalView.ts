@@ -34,7 +34,7 @@ export class ModalView extends View<IModalData> {
 	}
 
 	open() {
-		this.container.classList.add('modal_active');
+		this.toggleClass(this.container, 'modal_active', true)
 		this.events.emit('modal:open');
 	}
 
@@ -43,7 +43,7 @@ export class ModalView extends View<IModalData> {
 	}
 
 	close() {
-		this.container.classList.remove('modal_active');
+		this.toggleClass(this.container, 'modal_active', false);
 		this.clearContent();
 		this.events.emit('modal:close');
 	}

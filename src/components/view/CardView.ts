@@ -55,14 +55,10 @@ export class CardView extends View<IProduct> {
 	set price(value: number | null) {
 		if (value === null) {
 			this.setText(this.cardElements.price, 'Бесценно');
-			if (this.cardElements.button) {
-				this.cardElements.button.disabled = true;
-			}
+			this.setDisabled(this.cardElements.button, true);
 		} else {
 			this.setText(this.cardElements.price, value.toString() + ' синапсов');
-			if (this.cardElements.button) {
-				this.cardElements.button.disabled = false;
-			}
+			this.setDisabled(this.cardElements.button, false);
 		}
 	}
 
@@ -83,7 +79,7 @@ export class CardView extends View<IProduct> {
 	set category(value: CategoryList) {
 		if (this.cardElements.category) {
 			this.setText(this.cardElements.category, value);
-			this.cardElements.category.classList.add(categoryElements[value]);
+			this.toggleClass(this.cardElements.category, categoryElements[value], true);
 		}
 	}
 

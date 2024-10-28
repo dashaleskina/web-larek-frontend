@@ -30,13 +30,6 @@ export class DeliveryView extends FormView<TDelivery> {
 			),
 		};
 
-		this.deliveryElements.addressField.addEventListener('click', () => {
-			this.updateFieldValue(
-				'address',
-				this.deliveryElements.addressField.value
-			);
-		});
-
 		this.deliveryElements.cardButton.addEventListener('click', () => {
 			this.payment = 'онлайн';
 			this.updateFieldValue('payment', 'онлайн');
@@ -49,11 +42,11 @@ export class DeliveryView extends FormView<TDelivery> {
 	}
 
 	set payment(value: TPaymentProcess) {
-		this.deliveryElements.cardButton.classList.toggle(
+		this.toggleClass(this.deliveryElements.cardButton,
 			'button_alt-active',
 			value === 'онлайн'
 		);
-		this.deliveryElements.cashButton.classList.toggle(
+		this.toggleClass(this.deliveryElements.cashButton,
 			'button_alt-active',
 			value === 'при получении'
 		);

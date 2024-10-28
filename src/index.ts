@@ -159,6 +159,7 @@ function openBasket() {
 	modalView.render({
 		content: basketView.render(basketData),
 	});
+	basketView.setButtonDisabled(basketData.productsList.length === 0);
 }
 
 // ОТРИСОВКА ТОВАРОВ В КОРЗИНЕ
@@ -176,6 +177,7 @@ function renderBasketItems() {
 		basketElement.index = ++ind;
 		return basketElement.render(item);
 	});
+	
 }
 
 // ИНСТРУМЕНТ ДОБАВЛЕНИЯ ИЛИ УДАЛЕНИЯ ТОВАРОВ (модель)

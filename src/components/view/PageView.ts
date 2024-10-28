@@ -43,9 +43,9 @@ export class PageView extends View<IPage> {
 
 	set locked(value: boolean) {
 		if (value) {
-			this.pageElements.wrapper.classList.add('page__wrapper_locked');
+			this.toggleClass(this.pageElements.wrapper, 'page__wrapper_locked', true);
 		} else {
-			this.pageElements.wrapper.classList.remove('page__wrapper_locked');
+			this.toggleClass(this.pageElements.wrapper, 'page__wrapper_locked', false);
 		}
 	}
 }
