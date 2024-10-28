@@ -26,7 +26,6 @@ export class BasketView extends View<TOrderList> {
 
 	set basketSum(price: number) {
 		this.setText(this.price, price + ' синапсов');
-		this.setDisabled(this.button, !price)
 	}
 
 

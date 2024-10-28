@@ -519,6 +519,7 @@ constructor( protected element: string, container: HTMLElement, protected events
 ```
 products(): void - обновление списка товаров в коризне
 basketSum(): number - сумма товаров
+setButtonDisabled(state: boolean) - переключение статуса кнопки
 ```
 
 ### Класс DeliveryView
